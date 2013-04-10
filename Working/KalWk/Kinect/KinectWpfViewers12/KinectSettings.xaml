@@ -1,0 +1,87 @@
+﻿<kt:KinectControl x:Class="Microsoft.Samples.Kinect.WpfViewers.KinectSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:kt="clr-namespace:Microsoft.Samples.Kinect.WpfViewers"
+             mc:Ignorable="d"
+             d:DesignHeight="180" d:DesignWidth="220">
+    <kt:KinectControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="KinectControlResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </kt:KinectControl.Resources>
+    
+    <StackPanel x:Name="ViewModelRoot" Orientation="Vertical">
+
+        <!-- Not visible, this control will manage choosing skeletons -->
+        <kt:KinectSkeletonChooser x:Name="SkeletonChooser" KinectSensorManager="{Binding KinectSensorManager}"/>
+
+        <RadioButton Tag="_Color Stream" Style="{StaticResource KinectSettingsPanel}" Margin="0 0 0 10">
+            <ListBox
+                Style="{StaticResource KinectRadioList}"
+                ItemsSource="{Binding ColorModes}" 
+                SelectedItem="{Binding SelectedColorMode}"/>
+        </RadioButton>
+
+        <RadioButton Tag="_Depth Stream" Style="{StaticResource KinectSettingsPanel}" Margin="0 0 0 10">
+            <StackPanel Orientation="Vertical" >
+                <ListBox
+                    Style="{StaticResource KinectRadioList}"
+                    ItemsSource="{Binding DepthModes}" 
+                    SelectedItem="{Binding SelectedDepthMode}"/>
+                <Label Content="Range" Style="{StaticResource KinectLabel}"/>
+                <ListBox                    
+                    Style="{StaticResource KinectRadioList}"
+                    ItemsSource="{Binding DepthRanges}" 
+                    SelectedItem="{Binding Path=KinectSensorManager.DepthRange}"/>
+            </StackPanel>
+        </RadioButton>
+
+        <RadioButton Tag="_Skeleton Stream"  Style="{StaticResource KinectSettingsPanel}" Margin="0 0 0 10">
+            <StackPanel Orientation="Vertical" >            
+                <ListBox
+                    Style="{StaticResource KinectRadioList}"
+                    VerticalAlignment="Center" 
+                    ItemsSource="{Binding SkeletonModes}"  
+                    SelectedItem="{Binding SelectedSkeletonMode}"/>
+                <Label Content="Chooser Mode" Style="{StaticResource KinectLabel}"/>
+                <ListBox
+                    Style="{StaticResource KinectRadioList}"
+                    VerticalAlignment="Center" 
+                    ItemsSource="{Binding SkeletonChooserModes}" 
+                    SelectedItem="{Binding ElementName=SkeletonChooser, Path=SkeletonChooserMode}"/>
+            </StackPanel>
+        </RadioButton>
+
+        <RadioButton Tag="_Tilt Angle"  Style="{StaticResource KinectSettingsPanel}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource KinectLabel}" HorizontalAlignment="Right">27°</Label>
+                <Image Grid.Row="1" Grid.Column="0" Width="50" Source="Images\KinectTilt.png" Margin="5"/>
+                <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource KinectLabel}" HorizontalAlignment="Right">-27°</Label>
+
+                <Image Name="SliderTrack" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Source="Images\SliderTrack.png" Margin="5 5 20 5"/>
+                <Image Grid.Row="0" Grid.RowSpan="3"  Grid.Column="1" Source="Images\Slider.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="-1.3,0.5" MouseDown="Slider_MouseDown" MouseUp="Slider_MouseUp" MouseMove="Slider_MouseMove">
+                    <Image.RenderTransform>
+                        <RotateTransform  Angle="{Binding Path=KinectSensorManager.ElevationAngle, Converter={StaticResource DoubleScalerConverter}, ConverterParameter=-1.5}"/>
+                    </Image.RenderTransform>
+                </Image>
+
+                <TextBlock Style="{StaticResource KinectTextBlock}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Center" FontSize="{StaticResource LabelFontSize}" Text="{Binding Path=KinectSensorManager.ElevationAngle, StringFormat={}{0:F0}°}"/>
+            </Grid>
+        </RadioButton>
+    </StackPanel>
+</kt:KinectControl>

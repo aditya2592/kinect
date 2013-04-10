@@ -1,0 +1,13 @@
+D:\Kinect\Kinect\GreenScreen-WPF\bin\Debug\GreenScreen-WPF.exe
+D:\Kinect\Kinect\GreenScreen-WPF\bin\Debug\GreenScreen-WPF.pdb
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\ResolveAssemblyReference.cache
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\MainWindow.baml
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\MainWindow.g.cs
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\App.g.cs
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\GreenScreen-WPF_MarkupCompile.cache
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\GreenScreen-WPF.g.resources
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\Microsoft.Samples.Kinect.GreenScreen.Properties.Resources.resources
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\GenerateResource.read.1.tlog
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\GenerateResource.write.1.tlog
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\GreenScreen-WPF.exe
+D:\Kinect\Kinect\GreenScreen-WPF\obj\Debug\GreenScreen-WPF.pdb
